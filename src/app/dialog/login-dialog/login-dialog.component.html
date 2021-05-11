@@ -1,0 +1,38 @@
+
+
+  <div class="modal-content">
+	<div class="modal-header">
+		<button
+            type="button"
+            class="close"
+            aria-label="Close"
+            data-dismiss="modal"
+            (click)="close()"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+	</div>
+	<div class="modal-body">
+        <div class="form-title text-center">
+            <h4>Login</h4>
+          </div>
+          <div class="d-flex flex-column text-center">
+            <form [formGroup]="loginForm">
+              <div class="form-group">
+                <input type="email" formControlName="username" class="form-control" id="email" [(ngModel)]="user.username" name="username" placeholder="Username">
+                <span class="error-msg margin-right-70" *ngIf="loginForm?.get('username')?.invalid && (loginForm?.get('username')?.dirty || loginForm?.get('username')?.touched)">
+                  Please provide username.
+                </span>
+              </div>
+              <div class="form-group">
+                <input type="password" formControlName="password" class="form-control" id="password" [(ngModel)]="user.password" name="password" placeholder="Password">
+                <span class="error-msg margin-right-70" *ngIf="loginForm?.get('password')?.invalid && (loginForm?.get('password')?.dirty || loginForm?.get('password')?.touched)">
+                  Please provide password.
+                </span>
+              </div>
+              <span *ngIf="!isValid" class="error-msg">Invalid username or password</span>
+              <button type="button" class="btn btn-info btn-block btn-round" [disabled]="!user.username || !user.password" (click)="login()">Login</button>
+            </form>
+            
+	</div>
+</div>
